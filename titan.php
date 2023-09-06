@@ -17,7 +17,7 @@ class Titan {
         Titan::$host = 'localhost';
         Titan::$user = 'root';
         Titan::$pass = '';
-        Titan::$db = 'API';
+        Titan::$db = '';
 
         Titan::$mysqli = new mysqli(Titan::$host, Titan::$user, Titan::$pass, Titan::$db);
 
