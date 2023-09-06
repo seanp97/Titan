@@ -1,8 +1,7 @@
 <?php 
     require 'header.php';
     require './titan.php';
-    $Titan = new Titan();
-    $Titan->Title("About Page");
+    Titan::Title("About Page");
 ?>
 
 <h1>About Page</h1>
