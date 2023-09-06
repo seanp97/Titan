@@ -14,24 +14,24 @@ class Titan {
     }
 
     static function Connect() {
-        $host = 'localhost';
-        $user = 'root';
-        $pass = '';
-        $db = '';
+        Titan::$host = 'localhost';
+        Titan::$user = 'root';
+        Titan::$pass = '';
+        Titan::$db = 'API';
 
-        $mysqli = new mysqli($host, $user, $pass, $db);
+        Titan::$mysqli = new mysqli(Titan::$host, Titan::$user, Titan::$pass, Titan::$db);
 
-        if ($mysqli->connect_error) {
-            die("Connection failed: " . $mysqli->connect_error);
+        if (Titan::$mysqli->connect_error) {
+            die("Connection failed: " . Titan::$mysqli->connect_error);
         }
 
-        return $mysqli;
+        return Titan::$mysqli;
     }
 
     static function Select($sql) {
 
         try {
-            $result = mysqli_query(Titan::$mysqli, $sql);
+            $result = mysqli_query(Titan::Connect(), $sql);
 
             if (!$result) {
                 die(mysqli_error(Titan::$mysqli));
@@ -55,7 +55,7 @@ class Titan {
 
     static function GetAll($table) {
         try {
-            $result = mysqli_query(Titan::$mysqli, "SELECT * FROM " . $table);
+            $result = mysqli_query(Titan::Connect(), "SELECT * FROM " . $table);
 
             if (!$result) {
                 die(mysqli_error(Titan::$mysqli));
@@ -77,7 +77,7 @@ class Titan {
     }
 
     static function SQL($sql) {
-        if (!mysqli_query(Titan::$mysqli, $sql)) {
+        if (!mysqli_query(Titan::Connect(), $sql)) {
             echo "Error: " . $sql . "<br>" . mysqli_error(Titan::$mysqli);
         } 
     }
@@ -85,7 +85,7 @@ class Titan {
     static function CallStoredProcedure($ProcName) {
 
         try {
-            mysqli_query(Titan::$mysqli, "CALL $ProcName");
+            mysqli_query(Titan::Connect(), "CALL $ProcName");
         }
         catch(Exception $e) {
             echo $e;
@@ -121,7 +121,7 @@ class Titan {
             $insertSQL = "INSERT INTO $table ($tableFields)
             VALUES ($values)";
     
-            if (!Titan::$mysqli->query($insertSQL) === TRUE) {
+            if (!Titan::Connect()->query($insertSQL) === TRUE) {
                 echo "Error: " . $insertSQL . "<br>" . Titan::$mysqli->error;
             }
         }
