@@ -53,7 +53,7 @@ To use routing in titan, head over to routes.php, and in the routes array, we ca
 
 To change the title of our web page, inside your PHP file call the title function and pass in the title as a string.
 
-	Titan::("Home Page");
+	Titan::Title("Home Page");
 
 # Titan Database Functions
 
