@@ -227,10 +227,10 @@ To get the cookie, we will use the GetCookie function.
 To check whether isset($_POST['submit']).
 
 	if(Titan::IsSubmit()) {
-		echo "Is submission";
+	    echo "Is submission";
 	}
 	else {
-		echo "No submission";
+	    echo "No submission";
 	}
 
 
