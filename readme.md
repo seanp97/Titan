@@ -218,3 +218,53 @@ To check whether an email is valid, we can use the ValidEmail function.
 To get the cookie, we will use the GetCookie function.
 
 	$cookie = Titan::GetCookie("my_cookie");
+
+
+# Titan Submit
+
+**IsSubmit**
+
+To check whether isset($_POST['submit']).
+
+	if(Titan::IsSubmit()) {
+		echo "Is submission";
+	}
+	else {
+		echo "No submission";
+	}
+
+
+
+# Titan File Upload
+
+**FileUpload**
+
+home.php in views folder
+
+	<form action="./controllers/upload.php" method="POST" enctype="multipart/form-data">
+	  Select image to upload:
+	  <input type="file" name="fileToUpload" />
+	  <input type="submit" value="Upload Image" name="submit" />
+	</form>
+	
+
+upload.php file in controllers folder
+
+	if(Titan::IsSubmit()) {
+	    $uploadStatus = Titan::FileUpload("fileToUpload", array("jpg", "jpeg"), 100);
+
+	    if($uploadStatus == "Success") {
+	        Titan::Redirect("https://www.youtube.com");
+	    }
+	}
+
+Here we are getting the uploaded image file value which we pass in as the first argument. Second argument is the accepted file types as an array. The last argument is the file size in MB - (100MB) in the example.
+
+**Please note**
+
+The folder will need permission to upload files. Open terminal in the uploads file and run "sudo chmod -R 777 ."
+
+php.ini will also need editing on localhost:
+
+post_max_size=200M - 200MB
+upload_max_filesize=200M - 200MB
