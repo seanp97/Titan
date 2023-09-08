@@ -209,7 +209,7 @@ class Titan {
                     $targetDir = dirname(__FILE__) . "/uploads/" . $newFile;
                     $uploadSucess = move_uploaded_file($file["tmp_name"], $targetDir);
                     if($uploadSucess) {
-                        return "Success";
+                        return $newFile;
                     }
                     else {
                         return "Unsuccessful";
