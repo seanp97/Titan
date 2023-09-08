@@ -252,10 +252,7 @@ upload.php file in controllers folder
 
 	if(Titan::IsSubmit()) {
 	    $uploadStatus = Titan::FileUpload("fileToUpload", array("jpg", "jpeg"), 100);
-
-	    if($uploadStatus != "Unsuccessful") {
-	        Titan::Redirect("https://www.youtube.com");
-	    }
+	    echo $uploadStatus;
 	}
 
 Here we are getting the uploaded image file value which we pass in as the first argument. Second argument is the accepted file types as an array. The last argument is the file size in MB - (100MB) in the example.
