@@ -253,7 +253,7 @@ upload.php file in controllers folder
 	if(Titan::IsSubmit()) {
 	    $uploadStatus = Titan::FileUpload("fileToUpload", array("jpg", "jpeg"), 100);
 
-	    if($uploadStatus == "Success") {
+	    if($uploadStatus != "Unsuccessful") {
 	        Titan::Redirect("https://www.youtube.com");
 	    }
 	}
