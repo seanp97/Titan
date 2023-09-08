@@ -260,6 +260,8 @@ upload.php file in controllers folder
 
 Here we are getting the uploaded image file value which we pass in as the first argument. Second argument is the accepted file types as an array. The last argument is the file size in MB - (100MB) in the example.
 
+If successful, the function will return the filename and extension.
+
 **Please note**
 
 The folder will need permission to upload files. Open terminal in the uploads file and run "sudo chmod -R 777 ."
