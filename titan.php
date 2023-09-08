@@ -195,6 +195,45 @@ class Titan {
         }
     }
 
+    static function FileUpload($name, $allowedFileTypes, $fileSize) {
+        $file = $_FILES[$name];
+
+        if($file["error"] === 0) {
+            $fileName = $file["name"];
+            $fileType = explode(".", $fileName);
+            $fileTypeExt = end($fileType);
+
+            if(in_array($fileTypeExt, $allowedFileTypes)) {
+                if($file["size"] < $fileSize * 10000) {
+                    $newFile = uniqid("", true) . time() . "." . $fileTypeExt;
+                    $targetDir = dirname(__FILE__) . "/uploads/" . $newFile;
+                    $uploadSucess = move_uploaded_file($file["tmp_name"], $targetDir);
+                    if($uploadSucess) {
+                        return "Success";
+                    }
+                    else {
+                        return "Unsuccessful";
+                    }
+                }
+                else {
+                    return "File size too big";
+                }
+            }
+            else {
+                return "Not allowed file type";
+            }
+        } 
+        else {
+            return "Error uploading file";
+        }
+
+    }
+
+    static function IsSubmit() {
+        if(isset($_POST['submit'])) return true;
+        return false;
+    }
+
     static function ValidEmail($email) {
         try {
             if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
