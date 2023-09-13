@@ -53,6 +53,14 @@ class Titan {
 
     }
 
+    static function GetSession($variable) {
+        return $_SESSION[$variable];
+    }
+
+    static function SetSession($variable) {
+        $_SESSION[$variable];
+    }
+
     static function GetAll($table) {
         try {
             $result = mysqli_query(Titan::Connect(), "SELECT * FROM " . $table);
