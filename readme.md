@@ -43,11 +43,9 @@ We are bringing in the header & titan PHP file. We can use Titan functions by ca
 
 To use routing in titan, head over to routes.php, and in the routes array, we can set what path we want our PHP file to run. E.G. the home path - "/" will run our home.php file in the views folder.
 
-    $routes = [
-        '/' => 'views/home.php',
-        '/about' => 'views/about.php',
-        '/contact' => 'views/contact.php'
-    ];
+	Router::get('/', 'views/home.php');
+	Router::get('/about', 'views/about.php');
+	Router::get('/contact', 'views/contact.php');
     
 # Titan Title
 
