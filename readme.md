@@ -46,6 +46,15 @@ To use routing in titan, head over to routes.php, and in the routes array, we ca
 	Router::get('/', 'views/home.php');
 	Router::get('/about', 'views/about.php');
 	Router::get('/contact', 'views/contact.php');
+
+NOTE: 
+
+"views/" does not have to be added in as the get function will check for both. The following example will also work.
+
+	Router::get('/', 'home.php');
+	Router::get('/about', 'about.php');
+	Router::get('/contact', 'contact.php');
+
     
 # Titan Title
 
