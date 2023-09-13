@@ -8,10 +8,18 @@ class Router {
             $uri = Explode('/', $uri);
             $uri = $uri[count($uri) - 1];
             $uri = '/' . $uri;
-            
-            if($uri == $path) {
-                require $file;
+
+            if(str_contains($file, 'views')) {
+                if($uri == $path) {
+                    require $file;
+                }
             }
+            else {
+                if($uri == $path) {
+                    require 'views/' . $file;
+                }
+            }
+            
         }
         catch(Exception $e) {
             echo $e;
