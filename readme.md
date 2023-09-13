@@ -49,7 +49,7 @@ To use routing in titan, head over to routes.php, and in the routes array, we ca
 
 NOTE: 
 
-"views/" does not have to be added in as the get function will check for both. The following example will also work.
+"views/" does not have to be added in the argumebt as the get function will check for both. The following example will also work.
 
 	Router::get('/', 'home.php');
 	Router::get('/about', 'about.php');
