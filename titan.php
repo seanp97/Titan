@@ -57,7 +57,7 @@ class Titan {
         return $_SESSION[$variable];
     }
 
-    static function SetSession($value, $variable) {
+    static function SetSession($variable, $value) {
         $_SESSION[$variable] = $value;
     }
 
