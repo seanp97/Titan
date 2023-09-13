@@ -1,26 +1,8 @@
 <?php 
 
-// Get URI
+require_once 'path-loader.php';
 
-$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
-$uri = Explode('/', $uri);
-$uri = $uri[count($uri) - 1];
-$uri = '/' . $uri;
 
-// Set routes
-
-try {
-    $routes = [
-        '/' => 'views/home.php',
-        '/about' => 'views/about.php',
-        '/contact' => 'views/contact.php'
-    ];
-    
-    if(array_key_exists($uri, $routes)) {
-        require $routes[$uri];
-    }
-}
-
-catch(Exception $e) {
-    echo $e;
-}
+Router::get('/', 'views/home.php');
+Router::get('/about', 'views/about.php');
+Router::get('/contact', 'views/contact.php');
