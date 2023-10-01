@@ -1,4 +1,5 @@
 <?php 
+require_once 'view-loader.php';
 
 class Router {
 
@@ -24,6 +25,47 @@ class Router {
         catch(Exception $e) {
             echo $e;
         }
+    }
 
+    static function get($path, $cb = false) {
+        try {
+            if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+
+                $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+                $uri = Explode('/', $uri);
+                $uri = $uri[count($uri) - 1];
+                $uri = '/' . $uri;
+
+                if($path == $uri) {
+                    if($cb) {
+                        $cb();
+                    }
+                }
+            }
+        }
+        catch(Exception $e) {
+            echo $e;
+        }
+    }
+
+    static function post($path, $cb = false) {
+        try {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+                $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+                $uri = Explode('/', $uri);
+                $uri = $uri[count($uri) - 1];
+                $uri = '/' . $uri;
+
+                if($path == $uri) {
+                    if($cb) {
+                        $cb();
+                    }
+                }
+            }
+        }
+        catch(Exception $e) {
+            echo $e;
+        }
     }
 }

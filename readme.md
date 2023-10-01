@@ -55,6 +55,33 @@ NOTE:
 	Router::path('/about', 'about.php');
 	Router::path('/contact', 'contact.php');
 
+
+We can also call functions from our controllers folder. Here we are using the get function. We then call the function index inside the Home class.
+
+	// Routes
+
+	Router::get("/", function() {
+		Home::index();
+	});
+
+	//HomeController.php in controllers folder
+	<?php 
+	require_once './titan.php';
+	require_once './view-loader.php';
+
+	class Home extends Titan {
+		static function index() {
+			view("home.php");
+		}
+	}
+
+
+We can also use the post method on the Router class when a post request is made to the home path.
+
+	Router::post("/", function() {
+		echo "Hello World";
+	});
+
     
 # Titan Title
 
