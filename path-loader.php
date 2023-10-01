@@ -2,7 +2,7 @@
 
 class Router {
 
-    static function get($path, $file) {
+    static function path($path, $file) {
         try {
             $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
             $uri = Explode('/', $uri);

@@ -237,11 +237,6 @@ class Titan {
 
     }
 
-    static function IsSubmit() {
-        if(isset($_POST['submit'])) return true;
-        return false;
-    }
-
     static function ValidEmail($email) {
         try {
             if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -265,7 +260,7 @@ class Titan {
         }
     }
 
-    static function GetPostValue($val) {
+    static function PostValue($val) {
         try {
             return $_POST[$val];
         }

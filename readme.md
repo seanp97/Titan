@@ -51,9 +51,9 @@ NOTE:
 
 "views/" does not have to be added in the argument as the get function will check for both. The following example will also work.
 
-	Router::get('/', 'home.php');
-	Router::get('/about', 'about.php');
-	Router::get('/contact', 'contact.php');
+	Router::path('/', 'home.php');
+	Router::path('/about', 'about.php');
+	Router::path('/contact', 'contact.php');
 
     
 # Titan Title
@@ -226,19 +226,6 @@ To get the cookie, we will use the GetCookie function.
 
 	$cookie = Titan::GetCookie("my_cookie");
 
-
-# Titan Submit
-
-**IsSubmit**
-
-To check whether isset($_POST['submit']).
-
-	if(Titan::IsSubmit()) {
-	    echo "Is submission";
-	}
-	else {
-	    echo "No submission";
-	}
 
 
 
