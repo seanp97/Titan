@@ -64,7 +64,8 @@ We can also call functions from our controllers folder. Here we are using the ge
 	    Home::index();
 	});
 
-	//HomeController.php in controllers folder
+	// HomeController.php in controllers folder
+ 
 	<?php 
 	require_once './titan.php';
 	require_once './view-loader.php';
