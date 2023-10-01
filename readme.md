@@ -61,7 +61,7 @@ We can also call functions from our controllers folder. Here we are using the ge
 	// Routes
 
 	Router::get("/", function() {
-		Home::index();
+	    Home::index();
 	});
 
 	//HomeController.php in controllers folder
@@ -70,16 +70,16 @@ We can also call functions from our controllers folder. Here we are using the ge
 	require_once './view-loader.php';
 
 	class Home extends Titan {
-		static function index() {
-			view("home.php");
-		}
+	    static function index() {
+	        view("home.php");
+	    }
 	}
 
 
 We can also use the post method on the Router class when a post request is made to the home path.
 
 	Router::post("/", function() {
-		echo "Hello World";
+	    echo "Hello World";
 	});
 
     
