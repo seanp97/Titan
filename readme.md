@@ -64,11 +64,13 @@ We can also call functions from our controllers folder. Here we are using the ge
 	    view("home.php");
 	});
 
-	// Alternatively we can call our index function in our Home controller
+
+Alternatively we can call our index function in our Home controller
  
 	Router::get("/", function() {
 	    Home::index();
 	});
+
 
 	// HomeController.php in controllers folder
  
