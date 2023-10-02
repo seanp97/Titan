@@ -60,15 +60,14 @@ We can also call functions from our controllers folder. Here we are using the ge
 
 	// Routes
 
-	Router::get("/", function() {
-	    Home::index();
+ 	Router::get("/", function() {
+	    view("home.php");
 	});
 
-
- 	// Or we can call the view method
-
+	// Alternatively we can call our index function in our Home controller
+ 
 	Router::get("/", function() {
-	    view("home.php");
+	    Home::index();
 	});
 
 	// HomeController.php in controllers folder
