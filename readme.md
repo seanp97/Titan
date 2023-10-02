@@ -60,7 +60,7 @@ We can also call functions from our controllers folder. Here we are using the ge
 	// Routes
 
  	Route::get("/", function() {
-	    view("home.php");
+	    view("Home/home.php");
 	});
 
 
@@ -79,7 +79,7 @@ Alternatively we can call our index function in our Home controller. In the inde
 
 	class Home {
 	    static function index() {
-	        view("home.php");
+	        view("Home/home.php");
 	    }
 	}
 
