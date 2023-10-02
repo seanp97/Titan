@@ -98,6 +98,14 @@ To change the title of our web page, inside your PHP file call the title functio
 
 	Titan::Title("Home Page");
 
+
+# Post Value
+
+To get the post value we can use the Titan::PostValue() function. The function is wrapped inside mysql_real_escape_string function.
+
+	$email = Titan::PostValue("email");
+	$password = Titan::PostValue("password");
+
 # Titan Database Functions
 
 **Select**
@@ -261,7 +269,6 @@ To check whether an email is valid, we can use the ValidEmail function.
 To get the cookie, we will use the GetCookie function.
 
 	$cookie = Titan::GetCookie("my_cookie");
-
 
 
 
