@@ -56,7 +56,7 @@ NOTE:
 	Router::path('/contact', 'contact.php');
 
 
-We can also call functions from our controllers folder. Here we are using the get function. We then call the function index inside the Home class.
+We can also call functions from our controllers folder. Here we are using the get function. We are then calling the view function to use our home.php file in the views folder.
 
 	// Routes
 
@@ -65,7 +65,7 @@ We can also call functions from our controllers folder. Here we are using the ge
 	});
 
 
-Alternatively we can call our index function in our Home controller
+Alternatively we can call our index function in our Home controller. In the index function we are also calling the view function to display the home.php file which is in the views folder.
  
 	Router::get("/", function() {
 	    Home::index();
