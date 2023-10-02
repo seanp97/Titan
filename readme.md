@@ -77,7 +77,7 @@ We can also call functions from our controllers folder. Here we are using the ge
 	require_once './titan.php';
 	require_once './view-loader.php';
 
-	class Home extends Titan {
+	class Home {
 	    static function index() {
 	        view("home.php");
 	    }
