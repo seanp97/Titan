@@ -1,4 +1,3 @@
-
 # Welcome to Titan!
 
 To get started, git clone the Titan project, making sure the .htaccess file is in your project.
@@ -43,31 +42,31 @@ We are bringing in the header & titan PHP file. We can use Titan functions by ca
 
 To use routing in titan, head over to routes.php, and in the routes array, we can set what path we want our PHP file to run. E.G. the home path - "/" will run our home.php file in the views folder.
 
-	Router::get('/', 'views/home.php');
-	Router::get('/about', 'views/about.php');
-	Router::get('/contact', 'views/contact.php');
+	Route::get('/', 'views/home.php');
+	Route::get('/about', 'views/about.php');
+	Route::get('/contact', 'views/contact.php');
 
 NOTE: 
 
 "views/" does not have to be added in the argument as the get function will check for both. The following example will also work.
 
-	Router::path('/', 'home.php');
-	Router::path('/about', 'about.php');
-	Router::path('/contact', 'contact.php');
+	Route::path('/', 'home.php');
+	Route::path('/about', 'about.php');
+	Route::path('/contact', 'contact.php');
 
 
 We can also call functions from our controllers folder. Here we are using the get function. We are then calling the view function to use our home.php file in the views folder.
 
 	// Routes
 
- 	Router::get("/", function() {
+ 	Route::get("/", function() {
 	    view("home.php");
 	});
 
 
 Alternatively we can call our index function in our Home controller. In the index function we are also calling the view function to display the home.php file which is in the views folder.
  
-	Router::get("/", function() {
+	Route::get("/", function() {
 	    Home::index();
 	});
 
@@ -85,9 +84,9 @@ Alternatively we can call our index function in our Home controller. In the inde
 	}
 
 
-We can also use the post method on the Router class when a post request is made to the home path.
+We can also use the post method on the Route class when a post request is made to the home path.
 
-	Router::post("/", function() {
+	Route::post("/", function() {
 	    echo "Hello World";
 	});
 

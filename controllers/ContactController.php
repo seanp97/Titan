@@ -4,6 +4,6 @@ require_once './view-loader.php';
 
 class Contact {
     static function index() {
-        view("contact.php");
+        view("Contact/contact.php");
     }
 }

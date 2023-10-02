@@ -1,5 +1,5 @@
 <?php 
-    require_once 'header.php';
+    require_once './views/header.php';
     require_once './titan.php';
     Titan::Title("About Page");
 ?>
@@ -8,5 +8,5 @@
 
 
 <?php 
-    require_once 'footer.php';
+    require_once './views/footer.php';
 ?>

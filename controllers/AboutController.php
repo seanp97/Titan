@@ -4,6 +4,6 @@ require_once './view-loader.php';
 
 class About {
     static function index() {
-        view("about.php");
+        view("About/about.php");
     }
 }

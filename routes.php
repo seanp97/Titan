@@ -5,14 +5,14 @@ require_once './controllers/HomeController.php';
 require_once './controllers/AboutController.php';
 require_once './controllers/ContactController.php';
 
-Router::get("/", function() {
+Route::get("/", function() {
     Home::index();
 });
 
-Router::get("/about", function() {
+Route::get("/about", function() {
     About::index();
 });
 
-Router::get("/contact", function() {
+Route::get("/contact", function() {
     Contact::index();
 });

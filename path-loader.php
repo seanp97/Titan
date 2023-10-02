@@ -1,7 +1,7 @@
 <?php 
 require_once 'view-loader.php';
 
-class Router {
+class Route {
 
     static function path($path, $file) {
         try {
