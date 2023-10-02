@@ -262,7 +262,12 @@ class Titan {
 
     static function PostValue($val) {
         try {
-            return mysqli_real_escape_string(Titan::Connect(), $_POST[$val]);
+            if(isset($_POST[$val])) {
+                return mysqli_real_escape_string(Titan::Connect(), $_POST[$val]);
+            }
+            else {
+                return "value not set";
+            }
         }
         catch(Exception $e) {
             echo $e;
