@@ -9,6 +9,10 @@ Route::get("/", function() {
     Home::index();
 });
 
+Route::post("/upload", function() {
+    Home::upload();
+});
+
 Route::get("/about", function() {
     About::index();
 });
