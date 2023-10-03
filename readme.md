@@ -42,7 +42,7 @@ Within home.php inside the views folder, we have some PHP code at the top of the
 
 	require './titan.php';
 
-	Titan::Title("Home Page");
+	Title("Home Page");
 
 	?>
 
@@ -147,7 +147,7 @@ We can also use the post method on the Route class when a post request is made t
 To change the title of our web page, inside your PHP file call the title function and pass in the title as a string.
 
 
-	Titan::Title("Home Page");
+	Title("Home Page");
 
   
 
@@ -158,8 +158,8 @@ To change the title of our web page, inside your PHP file call the title functio
 To get the post value we can use the Titan::PostValue() function. The function is wrapped inside mysql_real_escape_string function.
 
 
-	$email = Titan::PostValue("email"); // $_POST["email"];
-	$password = Titan::PostValue("password"); // $_POST["password"];
+	$email = PostValue("email"); // $_POST["email"];
+	$password = PostValue("password"); // $_POST["password"];
 
 
 #  Titan Database Functions
@@ -237,23 +237,23 @@ In Titan, there are a few functions to check what sort of request is happening -
 If we want to check what the request is, we can write:
 
 
-	if(Titan::GetRequest()) {
+	if(GetRequest()) {
 		echo "Get Request";
 	}
 
-	if(Titan::PostRequest()) {
+	if(PostRequest()) {
 		echo "Post Request";
 	}
 
-	if(Titan::PutRequest()) {
+	if(PutRequest()) {
 		echo "Put Request";
 	}
 
-	if(Titan::DeleteRequest()) {
+	if(DeleteRequest()) {
 		echo "Delete Request";
 	}
 
-	if(Titan::PatchRequest()) {
+	if(PatchRequest()) {
 		echo "Patch Request";
 	}
 
@@ -269,7 +269,7 @@ If we want to output JSON, for example our person table, we can query our table,
 	$person_data = Titan::GetAll("person_table");
 
 	if($person_data) {
-		Titan::JSONShow($person_data);
+		JSONShow($person_data);
 	}
 
 Here we are getting all the data from our person table, checking if there is data then outputting the data in a JSON format.
@@ -281,7 +281,7 @@ Here we are getting all the data from our person table, checking if there is dat
 If we wanted to get JSON data from a server, we can use the GetJSON function. I will be using the json placeholder API as an example. - https://jsonplaceholder.typicode.com
 
 
-	$api_todos = Titan::GetJSON("https://jsonplaceholder.typicode.com/todos");
+	$api_todos = GetJSON("https://jsonplaceholder.typicode.com/todos");
 
   
 	if($api_todos) {
@@ -306,7 +306,7 @@ As an example we want to get the id of a specific person in our table.
 
 **http://localhost/API/person?id=1**
 
-	$personID = Titan::QueryString("id");
+	$personID = QueryString("id");
 
   
 This will give us the value of 1. We can then do additional logic like selecting data where the id = 1.
@@ -320,7 +320,7 @@ This will give us the value of 1. We can then do additional logic like selecting
 
 To easily redirect to a URL, we can call the redirect function.
 
-	Titan::Redirect("https://www.youtube.com/");
+	Redirect("https://www.youtube.com/");
 
   
 
@@ -335,7 +335,7 @@ This will redirect the page to YouTube
 
 To check whether an email is valid, we can use the ValidEmail function.
 
-	if(Titan::ValidEmail("john.doe@mail.com")) {
+	if(ValidEmail("john.doe@mail.com")) {
 		echo "Is valid email address";
 	}
 
@@ -354,7 +354,7 @@ To check whether an email is valid, we can use the ValidEmail function.
 
 To get the cookie, we will use the GetCookie function.
 
-	$cookie = Titan::GetCookie("my_cookie");
+	$cookie = GetCookie("my_cookie");
 
 
 #  Titan File Upload
@@ -381,9 +381,9 @@ This will be sent to the Upload Image method in the home controller.
 
 
 	static  function  UploadImage() {
-		$uploadStatus  =  Titan::FileUpload("fileToUpload",  array("jpg",  "jpeg"),  100);
+		$uploadStatus = FileUpload("fileToUpload",  array("jpg",  "jpeg"),  100);
 		if($uploadStatus  !=  "Unsuccessful") {
-			Titan::Redirect("http://localhost/Titan");
+			Redirect("http://localhost/Titan");
 		}
 	}
 

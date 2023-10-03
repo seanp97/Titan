@@ -1,7 +1,7 @@
 <?php 
     require_once './views/header.php';
     require_once './core/titan.php';
-    Titan::Title("Home Page");
+    Title("Home Page");
 ?>
 
 <h1>Home</h1>
