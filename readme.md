@@ -149,6 +149,27 @@ We can also use the post method on the Route class when a post request is made t
 	});
 
 
+#  Status codes
+
+To set status codes we can use the following methods.
+
+	Status200(); // Set OK
+
+	Status301(); // Set permanent redirect
+
+	Status302(); // Set temporary redirect
+
+	Status400(); // Set bad request
+
+	Status401(); // Set unauthorized Error
+
+	Status403(); // Set forbidden
+
+	Status404(); // Set not found
+
+	Status500(); // Set internal server error
+	
+
 #  Titan Title
 
 To change the title of our web page, inside your PHP file call the title function and pass in the title as a string.

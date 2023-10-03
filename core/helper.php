@@ -22,6 +22,38 @@ function JSONShow($query) {
 
 }
 
+function Status200() {
+    header("HTTP/1.0 200 OK");
+}
+
+function Status301() {
+    header("HTTP/1.0 301 Permanent Redirect");
+}
+
+function Status302() {
+    header("HTTP/1.0 302 Temporary Redirect");
+}
+
+function Status400() {
+    header("HTTP/1.0 400 Bad Request");
+}
+
+function Status401() {
+    header("HTTP/1.0 401 Unauthorized Error");
+}
+
+function Status403() {
+    header("HTTP/1.0 403 Forbidden");
+}
+
+function Status404() {
+    header("HTTP/1.0 404 Not Found");
+}
+
+function Status500() {
+    header("HTTP/1.0 500 Internal Server Error");
+}
+
 function GetSession($variable) {
     return $_SESSION[$variable];
 }
