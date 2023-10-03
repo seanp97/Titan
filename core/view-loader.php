@@ -2,9 +2,22 @@
 
 function view($file) {
     if(str_contains($file, 'views')) {
-        require $file;
+        if(str_contains($file, '.php')) {
+            require $file;
+        }
+        else {
+            require $file . ".php";
+        }
+       
     }
+    
     else {
-        require 'views/' . $file;
+        if(str_contains($file, '.php')) {
+            require 'views/' . $file;
+        }
+        else {
+            require 'views/' . $file . ".php";
+        }
+        
     }
 }
