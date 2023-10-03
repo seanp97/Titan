@@ -6,5 +6,4 @@ class Home {
     static function index() {
         view("Home/home.php");
     }
-
 }
