@@ -1,17 +1,10 @@
 <?php 
     require_once './views/header.php';
-    require_once './titan.php';
+    require_once './core/titan.php';
     Titan::Title("Home Page");
 ?>
 
-<h1>Home Page</h1>
-
-<form action="/Titan/upload" method="POST" enctype="multipart/form-data">
-  Select image to upload:
-  <input type="file" name="fileToUpload" />
-  <input type="submit" value="Upload Image" name="submit" />
-</form>
-
+<h1>Home</h1>
 
 <?php 
     require_once './views/footer.php';

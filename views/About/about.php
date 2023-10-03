@@ -1,6 +1,6 @@
 <?php 
     require_once './views/header.php';
-    require_once './titan.php';
+    require_once './core/titan.php';
     Titan::Title("About Page");
 ?>
 
