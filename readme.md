@@ -1,4 +1,5 @@
-# Welcome to Titan!
+
+#  Welcome to Titan!
 
 To get started, git clone the Titan project, making sure the .htaccess file is in your project.
 
@@ -6,106 +7,163 @@ With the base project of titan, there will be 3 pages, Home, About, Contact whic
 
 Titan comes with a lot of functions which simplifies writing PHP. All the base code lives in titan.php and can be modified to your liking.
 
-# Getting started
+#  Getting started
 
 Titan uses MYSQL as the database choice. To get started, head over to the titan.php file and within the constructor, change the database connection settings. These will be aligned to your database. After the connection settings have changed, you will be already connected!
 
-    static function Connect() {
-        $host = 'localhost';
-        $user = 'root';
-        $pass = '';
-        $db = '';
+	static function Connect() {
 
-        $mysqli = new mysqli($host, $user, $pass, $db);
+		$host = 'localhost';
+		$user = 'root';
+		$pass = '';
+		$db = '';
 
-        if ($mysqli->connect_error) {
-            die("Connection failed: " . $mysqli->connect_error);
-        }
+		$mysqli = new mysqli($host, $user, $pass, $db);
 
-        return $mysqli;
-    }
+		if ($mysqli->connect_error) {
+			die("Connection failed: " . $mysqli->connect_error);
+		}
 
+		return $mysqli;
+
+	}
+
+  
+  
 
 The 3 PHP files in the views folder are just boilerplate files, these files can be renamed and rerouted to any URL.
+
 Within home.php inside the views folder, we have some PHP code at the top of the file.
 
-	<?php 
-	    require 'header.php';
-	    require './titan.php';
-	    Titan::Title("Home Page");
+ 
+	<?php
+
+	require 'header.php';
+
+	require './titan.php';
+
+	Titan::Title("Home Page");
+
 	?>
+
+  
 
 We are bringing in the header & titan PHP file. We can use Titan functions by calling Titan::
 
+  
 
-# Titan Routing
+#  Titan Routing
+
+  
 
 To use routing in titan, head over to routes.php, and in the routes array, we can set what path we want our PHP file to run. E.G. the home path - "/" will run our home.php file in the views folder.
 
+  
+
 	Route::get('/', 'views/home.php');
+
 	Route::get('/about', 'views/about.php');
+
 	Route::get('/contact', 'views/contact.php');
 
-NOTE: 
+  
+
+NOTE:
+
 
 "views/" does not have to be added in the argument as the get function will check for both. The following example will also work.
 
 	Route::path('/', 'home.php');
+
 	Route::path('/about', 'about.php');
+
 	Route::path('/contact', 'contact.php');
 
 
 We can also call functions from our controllers folder. Here we are using the get function. We are then calling the view function to use our home.php file in the views folder.
 
-	// Routes
+  
+// Routes
 
- 	Route::get("/", function() {
-	    view("Home/home.php");
+
+	Route::get("/", function() {
+		view("Home/home.php");
 	});
 
 
 Alternatively we can call our index function in our Home controller. In the index function we are also calling the view function to display the home.php file which is in the views folder.
- 
+
 	Route::get("/", function() {
-	    Home::index();
+		Home::index();
 	});
 
+  
+// HomeController.php in controllers folder
 
-	// HomeController.php in controllers folder
- 
-	<?php 
+	<?php
+
 	require_once './titan.php';
 	require_once './view-loader.php';
 
 	class Home {
-	    static function index() {
-	        view("Home/home.php");
-	    }
+		static function index() {
+			view("Home/home.php");
+		}
 	}
 
 
 We can also use the post method on the Route class when a post request is made to the home path.
 
 	Route::post("/", function() {
-	    echo "Hello World";
+		echo "Hello World";
 	});
 
-    
-# Titan Title
+  
+#  Titan Route Request Methods
+
+	Route::get("/", function() {
+		echo "GET Request";
+	});
+	
+	Route::post("/", function() {
+		echo "POST Request";
+	});
+	
+	Route::put("/", function() {
+		echo "PUT Request";
+	});
+
+	Route::patch("/", function() {
+		echo "PATCH Request";
+	});
+
+	Route::delete("/", function() {
+		echo "DELETE Request";
+	});
+
+
+#  Titan Title
 
 To change the title of our web page, inside your PHP file call the title function and pass in the title as a string.
 
+
 	Titan::Title("Home Page");
 
+  
 
-# Post Value
+#  Post Value
+
+  
 
 To get the post value we can use the Titan::PostValue() function. The function is wrapped inside mysql_real_escape_string function.
+
 
 	$email = Titan::PostValue("email"); // $_POST["email"];
 	$password = Titan::PostValue("password"); // $_POST["password"];
 
-# Titan Database Functions
+
+#  Titan Database Functions
+
 
 **Select**
 
@@ -113,31 +171,34 @@ To get data from our database, we can use the select function, our below stateme
 
 	Titan::Select("SELECT * FROM person_table");
 
+
 We can assign this to a variable.
 
 	$person_data = Titan::Select("SELECT * FROM person_table");
-	
+
 **Outputting the data**
 
 Now we can check if there is data and then do logic based on the outcome.
 
 	if($person_data) {
-	    echo "There is person data";
-	}
-	else {
-	    echo "No person data exists";
+		echo "There is person data";
 	}
 
+	else {
+		echo "No person data exists";
+	}
 
 **As an example, if our person table had first_name & last_name column. We can then for loop over our data and output the result onto the page.**
 
+  
 	if($person_data) {
-	    foreach($person_data as $person) {
-		echo $person["first_name"] . " " . $person["last_name"];
-	    }
+		foreach($person_data as $person) {
+			echo $person["first_name"] . " " . $person["last_name"];
+		}
 	}
+
 	else {
-	    echo "No person data exists";
+		echo "No person data exists";
 	}
 
 
@@ -147,12 +208,14 @@ Now we can check if there is data and then do logic based on the outcome.
 
 This will get all the columns from the table, the table being the passed in argument.
 
-
+  
 **SQL**
+
 
 In the SQL function, we can write an SQL query which will not return any data. E.G. we wanted to drop, insert, update ETC...
 
-	Titan::SQL("DROP  TABLE  person_table");
+
+Titan::SQL("DROP TABLE person_table");
 
 
 **InsertInto**
@@ -161,145 +224,191 @@ The insert function will insert into a table, with the column names and values p
 
 	Titan::InsertInto("person_table", "first_name, last_name", "'John', 'Doe'");
 
+  
+  
 
-# Titan Web Request Functions
+#  Titan Web Request Functions
+
+  
 
 In Titan, there are a few functions to check what sort of request is happening - GET, POST, PUT, DELETE & PATCH.
 
+  
 If we want to check what the request is, we can write:
 
+
 	if(Titan::GetRequest()) {
-	    echo "Get Request";
+		echo "Get Request";
 	}
-	
+
 	if(Titan::PostRequest()) {
-	    echo "Post Request";
+		echo "Post Request";
 	}
-	
+
 	if(Titan::PutRequest()) {
-	    echo "Put Request";
+		echo "Put Request";
 	}
-	
+
 	if(Titan::DeleteRequest()) {
-	    echo "Delete Request";
+		echo "Delete Request";
 	}
-	
+
 	if(Titan::PatchRequest()) {
-	    echo "Patch Request";
+		echo "Patch Request";
 	}
 
 
-# Titan JSON Functions
+#  Titan JSON Functions
+
 
 **JSONShow**
 
+
 If we want to output JSON, for example our person table, we can query our table, then output the result in a JSON format.
 
-
 	$person_data = Titan::GetAll("person_table");
-	
+
 	if($person_data) {
-	    Titan::JSONShow($person_data);
+		Titan::JSONShow($person_data);
 	}
 
 Here we are getting all the data from our person table, checking if there is data then outputting the data in a JSON format.
-
+  
 
 **GetJSON**
 
+
 If we wanted to get JSON data from a server, we can use the GetJSON function. I will be using the json placeholder API as an example. - https://jsonplaceholder.typicode.com
+
 
 	$api_todos = Titan::GetJSON("https://jsonplaceholder.typicode.com/todos");
 
+  
 	if($api_todos) {
-	    foreach($api_todos as $todo) {
-	        echo $todo["title"];
-	        echo $todo["completed"];
-	    }
+		foreach($api_todos as $todo) {
+			echo $todo["title"];
+			echo $todo["completed"];
+		}
 	}
 
 
-# Titan Query String Function
+#  Titan Query String Function
+  
 
 **QueryString**
 
+  
 To grab a query string from our url, we can use the QueryString function.
 
 Lets say we have a server on **http://localhost/API/person**
 
 As an example we want to get the id of a specific person in our table.
 
- **http://localhost/API/person?id=1**
+**http://localhost/API/person?id=1**
 
 	$personID = Titan::QueryString("id");
 
+  
 This will give us the value of 1. We can then do additional logic like selecting data where the id = 1.
 
 
-# Titan Redirect Function
+#  Titan Redirect Function
+
 
 **Redirect**
+
 
 To easily redirect to a URL, we can call the redirect function.
 
 	Titan::Redirect("https://www.youtube.com/");
 
+  
+
 This will redirect the page to YouTube
 
 
-# Titan Email Function
+#  Titan Email Function
+
+  
 
 **ValidEmail**
 
 To check whether an email is valid, we can use the ValidEmail function.
 
 	if(Titan::ValidEmail("john.doe@mail.com")) {
-	    echo "Is valid email address";
+		echo "Is valid email address";
 	}
+
 	else {
-	    echo "Invalid email address";
+		echo "Invalid email address";
 	}
 
 
-# Titan Cookie Function
+#  Titan Cookie Function
+
+  
 
 **GetCookie**
+
+  
 
 To get the cookie, we will use the GetCookie function.
 
 	$cookie = Titan::GetCookie("my_cookie");
 
 
+#  Titan File Upload
 
-# Titan File Upload
 
 **FileUpload**
 
+  
 home.php in views folder
 
-	<form action="./controllers/upload.php" method="POST" enctype="multipart/form-data">
-	  Select image to upload:
-	  <input type="file" name="fileToUpload" />
-	  <input type="submit" value="Upload Image" name="submit" />
+	<form action="/Titan/upload" method="POST" enctype="multipart/form-data">
+
+Select image to upload:
+
+	<input type="file" name="fileToUpload" />
+
+	<input type="submit" value="Upload Image" name="submit" />
+
 	</form>
-	
 
-upload.php file in controllers folder
+  
 
-	if(Titan::IsSubmit()) {
-	    $uploadStatus = Titan::FileUpload("fileToUpload", array("jpg", "jpeg"), 100);
-	    echo $uploadStatus;
+This will be sent to the Upload Image method in the home controller.
+
+
+	static  function  UploadImage() {
+		$uploadStatus  =  Titan::FileUpload("fileToUpload",  array("jpg",  "jpeg"),  100);
+		if($uploadStatus  !=  "Unsuccessful") {
+			Titan::Redirect("http://localhost/Titan");
+		}
 	}
+
+  
 
 Here we are getting the uploaded image file value which we pass in as the first argument. Second argument is the accepted file types as an array. The last argument is the file size in MB - (100MB) in the example.
 
+  
+
 If successful, the function will return the filename and extension.
+
+  
 
 **Please note**
 
+  
+
 The folder will need permission to upload files. Open terminal in the uploads file and run "sudo chmod -R 777 ."
+
+  
 
 php.ini will also need editing on localhost:
 
+  
+
 post_max_size=200M - 200MB
+
 upload_max_filesize=200M - 200MB

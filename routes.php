@@ -10,7 +10,7 @@ Route::get("/", function() {
 });
 
 Route::post("/upload", function() {
-    Home::upload();
+    Home::UploadImage();
 });
 
 Route::get("/about", function() {
