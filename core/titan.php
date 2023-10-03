@@ -14,10 +14,10 @@ class Titan {
     }
 
     static function Connect() {
-        Titan::$host = 'localhost';
-        Titan::$user = 'root';
+        Titan::$host = '';
+        Titan::$user = '';
         Titan::$pass = '';
-        Titan::$db = 'db';
+        Titan::$db = '';
 
         Titan::$mysqli = new mysqli(Titan::$host, Titan::$user, Titan::$pass, Titan::$db);
 
