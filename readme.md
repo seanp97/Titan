@@ -155,7 +155,7 @@ To change the title of our web page, inside your PHP file call the title functio
 
   
 
-To get the post value we can use the Titan::PostValue() function. The function is wrapped inside mysql_real_escape_string function.
+To get the post value we can use the PostValue() function. The function is wrapped inside mysql_real_escape_string function.
 
 
 	$email = PostValue("email"); // $_POST["email"];
