@@ -91,6 +91,13 @@ We can also call functions from our controllers folder. Here we are using the ge
 	});
 
 
+	// .php extension does not need to be added. Below will also work
+
+	Route::get("/", function() {
+		view("Home/home");
+	});
+
+
 Alternatively we can call our index function in our Home controller. In the index function we are also calling the view function to display the home.php file which is in the views folder.
 
 	Route::get("/", function() {
