@@ -21,7 +21,7 @@ Titan uses MYSQL as the database choice. To get started, head over to the titan.
 		$mysqli = new mysqli($host, $user, $pass, $db);
 
 		if ($mysqli->connect_error) {
-			die("Connection failed: " . $mysqli->connect_error);
+		    die("Connection failed: " . $mysqli->connect_error);
 		}
 
 		return $mysqli;
@@ -87,21 +87,21 @@ We can also call functions from our controllers folder. Here we are using the ge
 
 
 	Route::get("/", function() {
-		view("Home/home.php");
+	    view("Home/home.php");
 	});
 
 
 	// .php extension does not need to be added. Below will also work
 
 	Route::get("/", function() {
-		view("Home/home");
+	    view("Home/home");
 	});
 
 
 Alternatively we can call our index function in our Home controller. In the index function we are also calling the view function to display the home.php file which is in the views folder.
 
 	Route::get("/", function() {
-		Home::index();
+	    Home::index();
 	});
 
   
@@ -113,39 +113,39 @@ Alternatively we can call our index function in our Home controller. In the inde
 	require_once './view-loader.php';
 
 	class Home {
-		static function index() {
-			view("Home/home.php");
-		}
+	    static function index() {
+	        view("Home/home.php");
+	    }
 	}
 
 
 We can also use the post method on the Route class when a post request is made to the home path.
 
 	Route::post("/", function() {
-		echo "Hello World";
+	    echo "Hello World";
 	});
 
   
 #  Titan Route Request Methods
 
 	Route::get("/", function() {
-		echo "GET Request";
+	    echo "GET Request";
 	});
 	
 	Route::post("/", function() {
-		echo "POST Request";
+	    echo "POST Request";
 	});
 	
 	Route::put("/", function() {
-		echo "PUT Request";
+	    echo "PUT Request";
 	});
 
 	Route::patch("/", function() {
-		echo "PATCH Request";
+	    echo "PATCH Request";
 	});
 
 	Route::delete("/", function() {
-		echo "DELETE Request";
+	    echo "DELETE Request";
 	});
 
 
@@ -170,7 +170,7 @@ To set status codes we can use the following methods.
 	Status500(); // Set internal server error
 	
 
-#  Titan Title
+# Title
 
 To change the title of our web page, inside your PHP file call the title function and pass in the title as a string.
 
@@ -209,24 +209,24 @@ We can assign this to a variable.
 Now we can check if there is data and then do logic based on the outcome.
 
 	if($person_data) {
-		echo "There is person data";
+	    echo "There is person data";
 	}
 
 	else {
-		echo "No person data exists";
+	    echo "No person data exists";
 	}
 
 **As an example, if our person table had first_name & last_name column. We can then for loop over our data and output the result onto the page.**
 
   
 	if($person_data) {
-		foreach($person_data as $person) {
-			echo $person["first_name"] . " " . $person["last_name"];
-		}
+	    foreach($person_data as $person) {
+	        echo $person["first_name"] . " " . $person["last_name"];
+	    }
 	}
 
 	else {
-		echo "No person data exists";
+	    echo "No person data exists";
 	}
 
 
@@ -266,23 +266,23 @@ If we want to check what the request is, we can write:
 
 
 	if(GetRequest()) {
-		echo "Get Request";
+	    echo "Get Request";
 	}
 
 	if(PostRequest()) {
-		echo "Post Request";
+	    echo "Post Request";
 	}
 
 	if(PutRequest()) {
-		echo "Put Request";
+	    echo "Put Request";
 	}
 
 	if(DeleteRequest()) {
-		echo "Delete Request";
+	    echo "Delete Request";
 	}
 
 	if(PatchRequest()) {
-		echo "Patch Request";
+	    echo "Patch Request";
 	}
 
 
@@ -297,7 +297,7 @@ If we want to output JSON, for example our person table, we can query our table,
 	$person_data = Titan::GetAll("person_table");
 
 	if($person_data) {
-		JSONShow($person_data);
+	    JSONShow($person_data);
 	}
 
 Here we are getting all the data from our person table, checking if there is data then outputting the data in a JSON format.
@@ -313,10 +313,10 @@ If we wanted to get JSON data from a server, we can use the GetJSON function. I 
 
   
 	if($api_todos) {
-		foreach($api_todos as $todo) {
-			echo $todo["title"];
-			echo $todo["completed"];
-		}
+	    foreach($api_todos as $todo) {
+		 echo $todo["title"];
+		 echo $todo["completed"];
+	    }
 	}
 
 
@@ -364,11 +364,11 @@ This will redirect the page to YouTube
 To check whether an email is valid, we can use the ValidEmail function.
 
 	if(ValidEmail("john.doe@mail.com")) {
-		echo "Is valid email address";
+	    echo "Is valid email address";
 	}
 
 	else {
-		echo "Invalid email address";
+	    echo "Invalid email address";
 	}
 
 
@@ -411,7 +411,7 @@ This will be sent to the Upload Image method in the home controller.
 	static  function  UploadImage() {
 		$uploadStatus = FileUpload("fileToUpload",  array("jpg",  "jpeg"),  100);
 		if($uploadStatus  !=  "Unsuccessful") {
-			Redirect("http://localhost/Titan");
+		    Redirect("http://localhost/Titan");
 		}
 	}
 
