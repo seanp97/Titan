@@ -6,7 +6,8 @@ require_once './core/view-loader.php';
 class Contact {
 
     static function index() {
-        view("Contact/contact.php");
+        // Load contact.php file in views/Contact folder
+        view("Contact/contact");
     }
-    
+
 }

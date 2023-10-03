@@ -6,7 +6,8 @@ require_once './core/view-loader.php';
 class About {
 
     static function index() {
-        view("About/about.php");
+        // Load about.php file in views/About folder
+        view("About/about");
     }
-    
+
 }
