@@ -1,7 +1,5 @@
 <?php
 
-require_once 'titan.php';
-
 function JSONShow($query) {
 
     try {
@@ -154,7 +152,7 @@ function Redirect($url) {
 function PostValue($val) {
     try {
         if(isset($_POST[$val])) {
-            return mysqli_real_escape_string(Titan::Connect(), $_POST[$val]);
+            return $_POST[$val];
         }
         else {
             return "value not set";

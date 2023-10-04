@@ -1,114 +1,92 @@
-<?php
-
-require_once 'helper.php';
+<?php 
 
 class Titan {
 
-    private static $host;
-    private static $user;
-    private static $pass;
-    private static $db;
-    public static $mysqli;
+    public $mysqli;
+    public $queryBuilder;
 
     function __construct() {
-        Titan::Connect();
-        header('Access-Control-Allow-Origin: *');
+        $this->Connect();
     }
 
-    static function Connect() {
-        Titan::$host = '';
-        Titan::$user = '';
-        Titan::$pass = '';
-        Titan::$db = '';
+    function Connect() {
+        $host = 'localhost';
+        $user = 'root';
+        $pass = '';
+        $db = 'db';
 
-        Titan::$mysqli = new mysqli(Titan::$host, Titan::$user, Titan::$pass, Titan::$db);
+        $this->mysqli = new mysqli($host, $user, $pass, $db);
 
-        if (Titan::$mysqli->connect_error) {
-            die("Connection failed: " . Titan::$mysqli->connect_error);
+        if ($this->mysqli->connect_error) {
+            die("Connection failed: " . $this->mysqli->connect_error);
         }
 
-        return Titan::$mysqli;
+        return $this->mysqli;
     }
 
-    static function Select($sql) {
-
-        try {
-            $result = mysqli_query(Titan::Connect(), $sql);
-
-            if (!$result) {
-                die(mysqli_error(Titan::$mysqli));
-            }
-    
-            if (mysqli_num_rows($result) > 0) {
-    
-                while($row = mysqli_fetch_assoc($result)) {
-                    $data[] = $row;
-                }
-    
-                return $data;
-            } 
+    function select($values = '') {
+        if(!empty($values)) {
+            $this->queryBuilder .= "SELECT $values";
         }
-
-        catch(Exception $e) {
-            throw new Exception("Error querying database. " . $e);
-        }
-
-    }
-
-    static function GetAll($table) {
-        try {
-            $result = mysqli_query(Titan::Connect(), "SELECT * FROM " . $table);
-
-            if (!$result) {
-                die(mysqli_error(Titan::$mysqli));
-            }
-    
-            if (mysqli_num_rows($result) > 0) {
-    
-                while($row = mysqli_fetch_assoc($result)) {
-                    $data[] = $row;
-                }
-    
-                return $data;
-            } 
-        }
-
-        catch(Exception $e) {
-            throw new Exception("Error querying database. " . $e);
-        }
-    }
-
-    static function SQL($sql) {
-        if (!mysqli_query(Titan::Connect(), $sql)) {
-            echo "Error: " . $sql . "<br>" . mysqli_error(Titan::$mysqli);
-        } 
-    }
-
-    static function CallStoredProcedure($ProcName) {
-
-        try {
-            mysqli_query(Titan::Connect(), "CALL $ProcName");
-        }
-        catch(Exception $e) {
-            echo $e;
+        else {
+            $this->queryBuilder .= "SELECT";
         }
         
+        return $this;
     }
 
-    static function InsertInto($table, $tableFields, $values) {
+    function all() {
+        $this->queryBuilder .= " *";
+        return $this;
+    }
 
+    function from($table) {
+        $this->queryBuilder .= " FROM $table";
+        return $this;
+    }
+
+    function where($q) {
+        $this->queryBuilder .= " WHERE $q";
+        return $this;
+    }
+
+    function and($q) {
+        $this->queryBuilder .= " AND $q";
+        return $this;
+    }
+
+    function or($q) {
+        $this->queryBuilder .= " OR $q";
+        return $this;
+    }
+
+    function equals($e) {
+        $this->queryBuilder .= " = '$e'";
+        return $this;
+    }
+
+    function get() {
         try {
-            $insertSQL = "INSERT INTO $table ($tableFields)
-            VALUES ($values)";
-    
-            if (!Titan::Connect()->query($insertSQL) === TRUE) {
-                echo "Error: " . $insertSQL . "<br>" . Titan::$mysqli->error;
+            $result = mysqli_query($this->Connect(), $this->queryBuilder);
+
+            if (!$result) {
+                die(mysqli_error($this->Connect()));
             }
-        }
-        catch(Exception $e) {
-            throw new Exception($e);
+    
+            if (mysqli_num_rows($result) > 0) {
+    
+                while($row = mysqli_fetch_assoc($result)) {
+                    $data[] = $row;
+                }
+
+                echo $this->queryBuilder;
+                return $data;
+            } 
         }
 
+        catch(Exception $e) {
+            throw new Exception("Error querying database. " . $e);
+        }
     }
 
 }
