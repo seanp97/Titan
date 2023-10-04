@@ -52,7 +52,7 @@ We are bringing in the header & titan PHP file. We can use Titan functions by ca
 
   
 
-#  Titan Routing
+# Routing
 
   
 
@@ -60,11 +60,11 @@ To use routing in titan, head over to routes.php, and in the routes array, we ca
 
   
 
-	Route::get('/', 'views/home.php');
+	Route::get('/', 'views/Home/home.php');
 
-	Route::get('/about', 'views/about.php');
+	Route::get('/about', 'views/About/about.php');
 
-	Route::get('/contact', 'views/contact.php');
+	Route::get('/contact', 'views/Contact/contact.php');
 
   
 
@@ -73,11 +73,11 @@ NOTE:
 
 "views/" does not have to be added in the argument as the get function will check for both. The following example will also work.
 
-	Route::path('/', 'home.php');
+	Route::path('/', 'Home/home.php');
 
-	Route::path('/about', 'about.php');
+	Route::path('/about', 'About/about.php');
 
-	Route::path('/contact', 'contact.php');
+	Route::path('/contact', 'Contact/contact.php');
 
 
 We can also call functions from our controllers folder. Here we are using the get function. We are then calling the view function to use our home.php file in the views folder.
@@ -126,7 +126,7 @@ We can also use the post method on the Route class when a post request is made t
 	});
 
   
-#  Titan Route Request Methods
+# Route Request Methods
 
 	Route::get("/", function() {
 	    echo "GET Request";
@@ -255,7 +255,7 @@ The insert function will insert into a table, with the column names and values p
   
   
 
-#  Titan Web Request Functions
+# Web Request Functions
 
   
 
@@ -286,7 +286,7 @@ If we want to check what the request is, we can write:
 	}
 
 
-#  Titan JSON Functions
+# JSON Functions
 
 
 **JSONShow**
@@ -320,7 +320,7 @@ If we wanted to get JSON data from a server, we can use the GetJSON function. I 
 	}
 
 
-#  Titan Query String Function
+# Query String Function
   
 
 **QueryString**
@@ -340,7 +340,7 @@ As an example we want to get the id of a specific person in our table.
 This will give us the value of 1. We can then do additional logic like selecting data where the id = 1.
 
 
-#  Titan Redirect Function
+# Redirect Function
 
 
 **Redirect**
@@ -355,7 +355,7 @@ To easily redirect to a URL, we can call the redirect function.
 This will redirect the page to YouTube
 
 
-#  Titan Email Function
+# Email Function
 
   
 
@@ -372,7 +372,7 @@ To check whether an email is valid, we can use the ValidEmail function.
 	}
 
 
-#  Titan Cookie Function
+#  Cookie Function
 
   
 
@@ -383,60 +383,3 @@ To check whether an email is valid, we can use the ValidEmail function.
 To get the cookie, we will use the GetCookie function.
 
 	$cookie = GetCookie("my_cookie");
-
-
-#  Titan File Upload
-
-
-**FileUpload**
-
-  
-home.php in views folder
-
-	<form action="/Titan/upload" method="POST" enctype="multipart/form-data">
-
-Select image to upload:
-
-	<input type="file" name="fileToUpload" />
-
-	<input type="submit" value="Upload Image" name="submit" />
-
-	</form>
-
-  
-
-This will be sent to the Upload Image method in the home controller.
-
-
-	static  function  UploadImage() {
-		$uploadStatus = FileUpload("fileToUpload",  array("jpg",  "jpeg"),  100);
-		if($uploadStatus  !=  "Unsuccessful") {
-		    Redirect("http://localhost/Titan");
-		}
-	}
-
-  
-
-Here we are getting the uploaded image file value which we pass in as the first argument. Second argument is the accepted file types as an array. The last argument is the file size in MB - (100MB) in the example.
-
-  
-
-If successful, the function will return the filename and extension.
-
-  
-
-**Please note**
-
-  
-
-The folder will need permission to upload files. Open terminal in the uploads file and run "sudo chmod -R 777 ."
-
-  
-
-php.ini will also need editing on localhost:
-
-  
-
-post_max_size=200M - 200MB
-
-upload_max_filesize=200M - 200MB

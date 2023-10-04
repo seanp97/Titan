@@ -7,7 +7,7 @@ class Contact {
 
     static function index() {
         // Load contact.php file in views/Contact folder
-        view("Contact/contact");
+        view("Contact/index");
     }
 
 }

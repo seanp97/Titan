@@ -62,40 +62,6 @@ function SetSession($variable, $value) {
     $_SESSION[$variable] = $value;
 }
 
-function FileUpload($name, $allowedFileTypes, $fileSize) {
-    $file = $_FILES[$name];
-
-    if($file["error"] === 0) {
-        $fileName = $file["name"];
-        $fileType = explode(".", $fileName);
-        $fileTypeExt = end($fileType);
-
-        if(in_array($fileTypeExt, $allowedFileTypes)) {
-            if($file["size"] < $fileSize * 10000) {
-                $newFile = uniqid("", true) . time() . "." . $fileTypeExt;
-                $targetDir = dirname(__FILE__) . "/uploads/" . $newFile;
-                $uploadSucess = move_uploaded_file($file["tmp_name"], $targetDir);
-                if($uploadSucess) {
-                    return $newFile;
-                }
-                else {
-                    return "Unsuccessful";
-                }
-            }
-            else {
-                return "File size too big";
-            }
-        }
-        else {
-            return "Not allowed file type";
-        }
-    } 
-    else {
-        return "Error uploading file";
-    }
-
-}
-
 function PostRequest() {
     return $_SERVER['REQUEST_METHOD'] === 'POST';
 }

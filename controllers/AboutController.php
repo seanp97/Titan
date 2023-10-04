@@ -7,7 +7,7 @@ class About {
 
     static function index() {
         // Load about.php file in views/About folder
-        view("About/about");
+        view("About/index");
     }
 
 }
