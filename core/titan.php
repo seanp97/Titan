@@ -26,13 +26,19 @@ class Titan {
         return $this->mysqli;
     }
 
-    function select() {
-        $this->queryBuilder .= "SELECT";
+    function select($values = '') {
+        if(!empty($values)) {
+            $this->queryBuilder .= "SELECT $values";
+        }
+        else {
+            $this->queryBuilder .= "SELECT";
+        }
+        
         return $this;
     }
 
-    function all() {
-        $this->queryBuilder .= " *";
+    function all($table) {
+        $this->queryBuilder .= "SELECT * FROM $table";
         return $this;
     }
 
@@ -76,11 +82,6 @@ class Titan {
         return $this;
     }
 
-    function order($q) {
-        $this->queryBuilder .= " ORDER BY $q";
-        return $this;
-    }
-
     function update($table) {
         $this->queryBuilder .= "UPDATE $table";
         return $this;
@@ -91,13 +92,13 @@ class Titan {
         return $this;
     }
 
-    function desc() {
-        $this->queryBuilder .= " DESC";
+    function desc($q) {
+        $this->queryBuilder .= " ORDER BY $q DESC";
         return $this;
     }
 
-    function asc() {
-        $this->queryBuilder .= " ASC";
+    function asc($q) {
+        $this->queryBuilder .= " ORDER BY $q ASC";
         return $this;
     }
 
