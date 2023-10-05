@@ -12,10 +12,10 @@ class Titan {
     }
 
     function Connect() {
-        $host = 'localhost';
-        $user = 'root';
+        $host = '';
+        $user = '';
         $pass = '';
-        $db = 'db';
+        $db = '';
 
         $this->mysqli = new mysqli($host, $user, $pass, $db);
 
