@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 require_once 'helper.php';
 
 class Titan {
@@ -12,8 +12,8 @@ class Titan {
     }
 
     function Connect() {
-        $host = '';
-        $user = '';
+        $host = 'localhost';
+        $user = 'root';
         $pass = '';
         $db = '';
 
@@ -49,6 +49,16 @@ class Titan {
 
     function from($table) {
         $this->queryBuilder .= " FROM $table";
+        return $this;
+    }
+
+    function innerjoin($table) {
+        $this->queryBuilder .= " INNER JOIN $table";
+        return $this;
+    }
+
+    function on($q) {
+        $this->queryBuilder .= " ON $q";
         return $this;
     }
 
@@ -118,7 +128,13 @@ class Titan {
     }
 
     function equals($e) {
-        $this->queryBuilder .= " = '$e'";
+        if(str_contains($e, '.') || is_numeric($e)) {
+            $this->queryBuilder .= " = $e";
+        }
+        else {
+            $this->queryBuilder .= " = '$e'";
+        }
+        
         return $this;
     }
 
@@ -160,6 +176,10 @@ class Titan {
     
                 while($row = mysqli_fetch_assoc($result)) {
                     $data[] = $row;
+                }
+
+                if (mysqli_num_rows($result) == 1) {
+                    return $data[0];
                 }
                 
                 return $data;
