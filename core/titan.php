@@ -138,8 +138,12 @@ class Titan {
     }
 
     function equals($e) {
+        $this->queryBuilder .= " = $e";
+        return $this;
+    }
+
+    function equals_string($e) {
         $this->queryBuilder .= " = '$e'";
-        
         return $this;
     }
 
@@ -171,8 +175,6 @@ class Titan {
             if (!$result) {
                 die(mysqli_error($this->Connect()));
             }
-
-            echo $this->queryBuilder;
     
             if (mysqli_num_rows($result) > 0) {
 
