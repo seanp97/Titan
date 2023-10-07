@@ -42,6 +42,16 @@ class Titan {
         return $this;
     }
 
+    function select_query($query) {
+        $this->queryBuilder .= "$query";
+        return $this;
+    }
+
+    function sql_query($query) {
+        $this->queryBuilder .= "$query";
+        return $this;
+    }
+
     function count($col) {
         $this->queryBuilder .= " COUNT($col)";
         return $this;
@@ -128,12 +138,7 @@ class Titan {
     }
 
     function equals($e) {
-        if(str_contains($e, '.') || is_numeric($e)) {
-            $this->queryBuilder .= " = $e";
-        }
-        else {
-            $this->queryBuilder .= " = '$e'";
-        }
+        $this->queryBuilder .= " = '$e'";
         
         return $this;
     }
@@ -166,6 +171,8 @@ class Titan {
             if (!$result) {
                 die(mysqli_error($this->Connect()));
             }
+
+            echo $this->queryBuilder;
     
             if (mysqli_num_rows($result) > 0) {
 
