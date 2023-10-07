@@ -26,6 +26,10 @@ function Status200() {
     header("HTTP/1.0 200 OK");
 }
 
+function Status204() {
+    header("HTTP/1.0 204 No Content");
+}
+
 function Status301() {
     header("HTTP/1.0 301 Permanent Redirect");
 }
@@ -48,6 +52,18 @@ function Status403() {
 
 function Status404() {
     header("HTTP/1.0 404 Not Found");
+}
+
+function Status405() {
+    header("HTTP/1.0 405 Method Not Allowed");
+}
+
+function Status408() {
+    header("HTTP/1.0 408 Request Timeout");
+}
+
+function Status429() {
+    header("HTTP/1.0 429 Too Many Requests");
 }
 
 function Status500() {
