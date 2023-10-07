@@ -142,7 +142,7 @@ class Titan {
         return $this;
     }
 
-    function equals_string($e) {
+    function equals_str($e) {
         $this->queryBuilder .= " = '$e'";
         return $this;
     }
