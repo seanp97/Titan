@@ -70,6 +70,10 @@ function Status500() {
     header("HTTP/1.0 500 Internal Server Error");
 }
 
+function Status($code, $message) {
+    header("HTTP/1.0 $code $message");
+}
+
 function GetSession($variable) {
     return $_SESSION[$variable];
 }
