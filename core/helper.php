@@ -1,5 +1,22 @@
 <?php
 
+function include_header_titan() {
+    require_once './views/header.php';
+    require_once './core/titan.php';
+}
+
+function include_header() {
+    require_once './views/header.php';
+}
+
+function include_footer() {
+    require_once './views/footer.php';
+}
+
+function include_titan() {
+    require_once './views/titan.php';
+}
+
 function JSONShow($query) {
 
     try {

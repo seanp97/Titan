@@ -1,14 +1,13 @@
 <?php 
-    require_once './views/header.php';
-    require_once './core/titan.php';
+    // Include header and Titan core
+    include_header_titan(); 
 
     // Set title of web page
     Title("Contact Page");
 ?>
 
-<h1>Contact Page</h1>
-
+<h1>Contact</h1>
 
 <?php 
-    require_once './views/footer.php';
+    include_footer();
 ?>
