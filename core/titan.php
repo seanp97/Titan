@@ -164,8 +164,27 @@ class Titan {
 
     function exec() {
         if (!mysqli_query($this->Connect(), $this->queryBuilder)) {
-            echo "Error: " . $sql . "<br>" . mysqli_error($this->mysqli);
+            echo "Error: " . $this->queryBuilder . "<br>" . mysqli_error($this->mysqli);
         } 
+    }
+
+    function stored_proc($sp) {
+        $result = $this->mysqli->query("CALL $sp");
+
+        if ($result) {
+            $data = $result->fetch_all(MYSQLI_ASSOC);
+
+            while($row = mysqli_fetch_assoc($result)) {
+                $data[] = $row;
+            }
+
+            return $data;
+            
+        } else {
+            echo "Error: " . $this->mysqli->error;
+        }
+
+        $this->mysqli->close();
     }
 
     function get() {
