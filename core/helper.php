@@ -17,6 +17,19 @@ function include_titan() {
     require_once './views/titan.php';
 }
 
+function Sanitize($input) {
+
+    $search = array(
+      '@<script[^>]*?>.*?</script>@si',   // Strip out javascript
+      '@<[\/\!]*?[^<>]*?>@si',            // Strip out HTML tags
+      '@<style[^>]*?>.*?</style>@siU',    // Strip style tags properly
+      '@<![\s\S]*?--[ \t\n\r]*>@'         // Strip multi-line comments
+    );
+  
+    $output = preg_replace($search, '', $input);
+    return $output;
+}
+
 function dd($a){
     var_dump($a);
     exit;

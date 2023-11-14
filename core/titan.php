@@ -189,7 +189,7 @@ class Titan {
 
     function get() {
         try {
-            $result = mysqli_query($this->Connect(), $this->queryBuilder);
+            $result = mysqli_query($this->Connect(), Sanitize($this->queryBuilder));
 
             if (!$result) {
                 die(mysqli_error($this->Connect()));
