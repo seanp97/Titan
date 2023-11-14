@@ -163,6 +163,17 @@ function GetJSON($url) {
     }
 }
 
+function Request($value = null) {
+
+    try {
+        if($value) return $_REQUEST[$value];
+        return $_REQUEST;
+    }
+    catch(Exception $e) {
+        echo $e;
+    }
+}
+
 function ValidEmail($email) {
     try {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
