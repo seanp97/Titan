@@ -17,6 +17,11 @@ function include_titan() {
     require_once './views/titan.php';
 }
 
+function dd($a){
+    var_dump($a);
+    exit;
+}
+
 function JSONShow($query) {
 
     try {
@@ -120,7 +125,6 @@ function DeleteRequest() {
 }
 
 function GetCookie($cookie) {
-
     try {
         if(isset($_COOKIE[$cookie])) {
             return $_COOKIE[$cookie];
@@ -136,7 +140,6 @@ function GetCookie($cookie) {
 } 
 
 function QueryString($param) {
-
     try {
         if(isset($_GET[$param])) {
             return $_GET[$param];
@@ -164,7 +167,6 @@ function GetJSON($url) {
 }
 
 function Request($value = null) {
-
     try {
         if($value) return $_REQUEST[$value];
         return $_REQUEST;
